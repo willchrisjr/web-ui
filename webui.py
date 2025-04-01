@@ -357,6 +357,7 @@ async def run_org_agent(
                 )
             )
 
+        # Only create a new browser context if one doesn't exist
         if _global_browser_context is None:
             _global_browser_context = await _global_browser.new_context(
                 config=BrowserContextConfig(
@@ -464,7 +465,9 @@ async def run_custom_agent(
                 )
             )
 
-        if _global_browser_context is None or (chrome_cdp and cdp_url != "" and cdp_url != None):
+        # Only create a new browser context if one doesn't exist
+        # Remove the condition that creates a new context when cdp_url changes
+        if _global_browser_context is None:
             _global_browser_context = await _global_browser.new_context(
                 config=BrowserContextConfig(
                     trace_path=save_trace_path if save_trace_path else None,
@@ -850,14 +853,14 @@ def create_ui(theme_name="Ocean"):
                     llm_provider = gr.Dropdown(
                         choices=[provider for provider, model in utils.model_names.items()],
                         label="LLM Provider",
-                        value="openai",
+                        value="google",
                         info="Select your preferred language model provider",
                         interactive=True
                     )
                     llm_model_name = gr.Dropdown(
                         label="Model Name",
-                        choices=utils.model_names['openai'],
-                        value="gpt-4o",
+                        choices=utils.model_names['google'],
+                        value="gemini-2.5-pro-exp-03-25",
                         interactive=True,
                         allow_custom_value=True,  # Allow users to input custom model names
                         info="Select a model in the dropdown options or directly type a custom model name"
