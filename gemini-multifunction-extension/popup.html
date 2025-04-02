@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gemini Assistant</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: sans-serif;
+            width: 400px;
+            padding: 10px;
+        }
+        textarea {
+            width: 95%;
+            min-height: 60px;
+            margin-bottom: 10px;
+        }
+        button {
+            margin-right: 5px;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #result {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 100px;
+            white-space: pre-wrap; /* Preserve formatting */
+            word-wrap: break-word;
+            background-color: #f9f9f9;
+        }
+        .loading {
+            text-align: center;
+            font-style: italic;
+            color: #555;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h3>Gemini Multifunction Assistant</h3>
+
+    <div>
+        <label for="modelSelect">Select Model:</label>
+        <select id="modelSelect">
+            <!-- Options will be populated by popup.js -->
+        </select>
+        <div id="customModelInputDiv" style="display: none; margin-top: 5px;">
+             <label for="customModelInput" style="margin-left: 5px;">Custom Model Name:</label>
+             <input type="text" id="customModelInput" placeholder="e.g., gemini-next-gen-alpha" style="width: 200px;">
+        </div>
+    </div>
+    <hr>
+
+    <p>Select an action or enter a custom prompt:</p>
+    <button id="summarizeBtn">Summarize Page</button>
+    <button id="explainBtn">Explain Selection</button>
+    <button id="customPromptBtn">Run Custom Prompt</button>
+    <hr>
+    <textarea id="customPrompt" placeholder="Enter your custom prompt here..."></textarea>
+    <hr>
+    <h4>Result:</h4>
+    <div id="result">Waiting for action...</div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
